@@ -38,19 +38,3 @@ function love.run()
 		if love.timer then love.timer.sleep(0.001) end
 	end
 end
-
-function codex.load.test()
-	testvar = 0
-end
-
-function codex.update.test(dt)
-	testvar = testvar + dt
-end
-
-function codex.keypressed.test(k)
-	if k == "r" then codex.delete("test") end
-end
-
-function codex.draw.test()
-	love.graphics.rectangle("fill",0,400,400,400)
-end
