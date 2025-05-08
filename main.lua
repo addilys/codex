@@ -1,10 +1,8 @@
 
+require "codex"
+
 function love.run()
-	if love.load then love.load(love.arg.parseGameArguments(arg), arg) end
-
-	-- We don't want the first frame's dt to include time taken by love.load.
-	if love.timer then love.timer.step() end
-
+	codex.handle("load",love.arg.parseGameArguments(arg), arg)
 	local dt = 0
 
 	-- Main loop time.
@@ -18,7 +16,7 @@ function love.run()
 						return a or 0
 					end
 				end
-				love.handlers[name](a,b,c,d,e,f)
+				codex.handle(name,a,b,c,d,e,f)
 			end
 		end
 
@@ -26,17 +24,33 @@ function love.run()
 		if love.timer then dt = love.timer.step() end
 
 		-- Call update and draw
-		if love.update then love.update(dt) end -- will pass 0 if love.timer is disabled
+		codex.handle("update",dt)
 
 		if love.graphics and love.graphics.isActive() then
 			love.graphics.origin()
 			love.graphics.clear(love.graphics.getBackgroundColor())
 
-			if love.draw then love.draw() end
+			codex.handle("draw")
 
 			love.graphics.present()
 		end
 
 		if love.timer then love.timer.sleep(0.001) end
 	end
+end
+
+function codex.load.test()
+	testvar = 0
+end
+
+function codex.update.test(dt)
+	testvar = testvar + dt
+end
+
+function codex.keypressed.test(k)
+	if k == "r" then codex.delete("test") end
+end
+
+function codex.draw.test()
+	love.graphics.rectangle("fill",0,400,400,400)
 end
