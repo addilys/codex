@@ -1,8 +1,8 @@
 
 codex = {
 	draw = {},
-	errhand = {love.errhand},
-	errorhandler = {love.errorhandler},
+	errhand = {love = love.errhand},
+	errorhandler = {love = love.errorhandler},
 	load = {},
 	lowmemory = {},
 	threaderror = {},
