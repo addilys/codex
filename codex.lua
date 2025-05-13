@@ -65,9 +65,22 @@ function codex.handle(name,a,b,c,d,e,f)
 end
 
 function codex.delete(key)
-	for k, v in next, codex do
-		if type(v) == "table" then
-			v[key] = nil
+	if type(key) == "table" and #key == 1 then
+		key = key[1]
+	end
+	if type(key) ~= "table" then
+		for k, v in next, codex do
+			if type(v) == "table" then
+				v[key] = nil
+			end
+		end
+	else
+		for n = 1, #key, 1 do
+			for k, v in next, codex do
+				if type(v) == "table" then
+					v[key[n]] = nil
+				end
+			end
 		end
 	end
 end
