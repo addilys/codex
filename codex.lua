@@ -8,6 +8,7 @@ codex = {
 	threaderror = {},
 	update = {},
 	directorydropped = {},
+	displayrotated = {},
 	filedropped = {},
 	focus = {},
 	mousefocus = {},
