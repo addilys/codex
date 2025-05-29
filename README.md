@@ -7,7 +7,7 @@ Simple alternative LÖVE event handler using per-callback tables of functions wi
 
 `codex.pages.getPage(number)` is used to get a graphics layer table to add draw functions to.
 # pages
-Draw function layering system for codex. Could be repurposed for anything else, I don't care really.
+Draw function layering system for codex. Check the code snippets below for more context.
 # Tips & Recommended Use
 ```
 -- you can add to codex directly with a function declaration
@@ -20,7 +20,7 @@ codex.keypressed.exampletwo = mykeycode
 
 -- or you can batch add functions from a properly formatted table
 exampleThree = {}
-function exampleThree.load()
+function exampleThree.load() end
 function exampleThree.update(dt) end
 function exampleThree.keypressed(k) end
 codex.add("exampleLibrary",exampleThree)
@@ -34,18 +34,21 @@ codex.add("exampleLibrary",exampleThree)
 -- unless you add this line, i guess.
 local pages = codex.pages
 
+--- or require it on its own if you just want easy layers.
+--pages = require "codex/pages"
+
 -- get a page or two.
 local pageone = pages.getPage(1)
 local pagetwo = pages.getPage(2)
 
--- we can add to the pages with our direct codex function assignment techniques
--- direct function declaration
+-- we can add to the pages with our first two codex assignment techniques
+-- of direct function declaration
 function pagetwo.example()
   love.graphics.setColor(0,0,0,1)
   love.graphics.rectangle("fill",0,0,love.graphics.getWidth()/2,love.graphics.getHeight())
 end
 
--- or assign the draw function.
+-- and assigning the draw function.
 function drawFunc()
   love.graphics.setColor(1,1,1,1)
   love.graphics.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
