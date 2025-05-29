@@ -3,7 +3,7 @@ Simple alternative LÖVE event handler using per-callback tables of functions wi
 ## Functions
 `codex.add(key,table)` is used to add a table of love callback functions to their respective codex tables under the given key.
 
-`codex.remove(key)` deletes every function with the given key in each codex event table.
+`codex.delete(key)` deletes every function with the given key in each codex event table.
 
 `codex.pages.getPage(number)` is used to get a graphics layer table to add draw functions to.
 # pages
